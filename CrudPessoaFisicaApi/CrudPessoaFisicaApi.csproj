@@ -12,6 +12,9 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Application\" />
+    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>
