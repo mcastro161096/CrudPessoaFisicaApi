@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace CrudPessoaFisicaApi.Context
+namespace CrudPessoaFisicaApi.Data.Context
 {
     public class ApiContext : DbContext
     {

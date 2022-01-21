@@ -1,4 +1,4 @@
-using CrudPessoaFisicaApi.Context;
+using CrudPessoaFisicaApi.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 

@@ -1,4 +1,4 @@
-﻿namespace CrudPessoaFisicaApi.Entities
+﻿namespace CrudPessoaFisicaApi.Domain.Entities
 {
     public abstract class Pessoa : EntityBase
     {
