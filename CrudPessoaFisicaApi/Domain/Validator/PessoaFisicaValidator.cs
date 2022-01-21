@@ -5,8 +5,8 @@ namespace CrudPessoaFisicaApi.Domain.Validator
 {
     public class PessoaFisicaValidator : AbstractValidator<PessoaFisica>
     {
-        const string ERRO_CAMPO_VAZIO = " não pode ser vazio";
-        const string ERRO_CAMPO_NULL = " não pode ser nulo";
+        const string ERRO_CAMPO_VAZIO = "Não pode ser vazio";
+        const string ERRO_CAMPO_NULL = "Não pode ser nulo";
         const string ERRO_DATA_INVALIDA = " Data inválida";
 
 

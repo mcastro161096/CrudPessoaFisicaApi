@@ -29,7 +29,7 @@ namespace CrudPessoaFisicaApi.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok();
+            return Ok(_pessoaFisicaApplication.GetAll());
         }
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace CrudPessoaFisicaApi.Controllers
                 _result = _validationRules.Validate(pessoaFisica);
                 if (_result.IsValid)
                 {
-                    return Ok();
+                    return Ok(_pessoaFisicaApplication.Post(pessoaFisica));
                 }
                 return BadRequest(_result.Errors);
             }

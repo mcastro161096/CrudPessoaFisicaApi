@@ -1,10 +1,16 @@
 ﻿using CrudPessoaFisicaApi.Application.IApplication;
+using CrudPessoaFisicaApi.Data.IRepository;
 using CrudPessoaFisicaApi.Domain.Entities;
 
 namespace CrudPessoaFisicaApi.Application
 {
     public class PessoaFisicaApplication : IPessoaFisicaApplication
     {
+        private readonly IPessoaFisicaRepository _pessoaFisicaRepository;
+        public PessoaFisicaApplication(IPessoaFisicaRepository pessoaFisicaRepository)
+        {
+            _pessoaFisicaRepository = pessoaFisicaRepository;
+        }
         public PessoaFisica Get(int id)
         {
             throw new NotImplementedException();
@@ -12,12 +18,12 @@ namespace CrudPessoaFisicaApi.Application
 
         public List<PessoaFisica> GetAll()
         {
-            throw new NotImplementedException();
+            return _pessoaFisicaRepository.GetAll();
         }
 
         public bool Post(PessoaFisica pessoaFisica)
         {
-            throw new NotImplementedException();
+            return _pessoaFisicaRepository.Post(pessoaFisica);
         }
 
         public bool Put(PessoaFisica pessoaFisica)

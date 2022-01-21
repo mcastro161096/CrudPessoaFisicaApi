@@ -1,4 +1,8 @@
+using CrudPessoaFisicaApi.Application;
+using CrudPessoaFisicaApi.Application.IApplication;
 using CrudPessoaFisicaApi.Data.Context;
+using CrudPessoaFisicaApi.Data.IRepository;
+using CrudPessoaFisicaApi.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -21,6 +25,9 @@ builder.Services.AddDbContextPool<ApiContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IPessoaFisicaApplication, PessoaFisicaApplication>();
+builder.Services.AddScoped<IPessoaFisicaRepository, PessoaFisicaRepository>();
 
 
 var app = builder.Build();
