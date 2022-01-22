@@ -1,15 +1,11 @@
 ﻿using CrudPessoaFisicaApi.Domain.Entities;
 using FluentValidation;
+using static CrudPessoaFisicaApi.Domain.Common.Constantes;
 
 namespace CrudPessoaFisicaApi.Domain.Validator
 {
     public class PessoaFisicaValidator : AbstractValidator<PessoaFisica>
     {
-        const string ERRO_CAMPO_VAZIO = "Não pode ser vazio";
-        const string ERRO_CAMPO_NULL = "Não pode ser nulo";
-        const string ERRO_DATA_INVALIDA = " Data inválida";
-
-
         public PessoaFisicaValidator()
         {
             RuleFor(x => x.NomeCompleto).NotNull().WithMessage(ERRO_CAMPO_NULL)

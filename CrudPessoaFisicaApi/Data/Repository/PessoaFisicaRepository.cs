@@ -2,6 +2,7 @@
 using CrudPessoaFisicaApi.Data.IRepository;
 using CrudPessoaFisicaApi.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Storage;
+using static CrudPessoaFisicaApi.Domain.Common.Constantes;
 
 namespace CrudPessoaFisicaApi.Data.Repository
 {
@@ -50,6 +51,8 @@ namespace CrudPessoaFisicaApi.Data.Repository
                 try
                 {
                     var pessoaFisicaEntity = _context.PessoaFisica.FirstOrDefault(p => p.Id == pessoaFisica.Id);
+                    if(pessoaFisicaEntity == null)
+                        throw new ApplicationException(ERRO_PESSOA_NAO_EXISTE);
 
                     pessoaFisicaEntity.UpdatedAt = DateTime.Now;
                     pessoaFisicaEntity.Cpf = pessoaFisica.Cpf;
