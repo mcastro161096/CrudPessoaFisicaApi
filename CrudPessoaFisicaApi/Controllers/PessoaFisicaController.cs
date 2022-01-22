@@ -12,8 +12,8 @@ namespace CrudPessoaFisicaApi.Controllers
     public class PessoaFisicaController : ControllerBase
     {
         private readonly IPessoaFisicaApplication _pessoaFisicaApplication;
-        public readonly PessoaFisicaValidator _validationRules = new PessoaFisicaValidator();
-        public ValidationResult _result = new ValidationResult();
+        private readonly PessoaFisicaValidator _validationRules = new PessoaFisicaValidator();
+        private ValidationResult _result = new ValidationResult();
 
         public PessoaFisicaController(IPessoaFisicaApplication pessoaFisicaApplication)
         {
@@ -23,13 +23,27 @@ namespace CrudPessoaFisicaApi.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok();
+            try
+            {
+                return Ok(_pessoaFisicaApplication.Get(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_pessoaFisicaApplication.GetAll());
+            try
+            {
+                return Ok(_pessoaFisicaApplication.GetAll());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
@@ -50,16 +64,35 @@ namespace CrudPessoaFisicaApi.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IActionResult Put([FromBody] PessoaFisica pessoaFisica)
         {
-            return Ok();
+            try
+            {
+                _result = _validationRules.Validate(pessoaFisica);
+                if (_result.IsValid)
+                {
+                    return Ok(_pessoaFisicaApplication.Put(pessoaFisica));
+                }
+                return BadRequest(_result.Errors);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok();
+            try
+            {
+                return Ok(_pessoaFisicaApplication.Delete(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

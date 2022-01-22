@@ -12,13 +12,19 @@ namespace CrudPessoaFisicaApi.Application
             _pessoaFisicaRepository = pessoaFisicaRepository;
         }
         public PessoaFisica Get(int id)
-        {
-            throw new NotImplementedException();
+        { 
+            var pessoaFisica = _pessoaFisicaRepository.Get(id);
+            if (pessoaFisica == null)
+                throw new ApplicationException("Pessoa não encontrada!");
+            return pessoaFisica;
         }
 
         public List<PessoaFisica> GetAll()
         {
-            return _pessoaFisicaRepository.GetAll();
+            var listapessoas = _pessoaFisicaRepository.GetAll();
+            if (listapessoas == null)
+                throw new ApplicationException("Não existe nenhum registro na base de dados!");
+            return listapessoas;
         }
 
         public bool Post(PessoaFisica pessoaFisica)
@@ -28,12 +34,12 @@ namespace CrudPessoaFisicaApi.Application
 
         public bool Put(PessoaFisica pessoaFisica)
         {
-            throw new NotImplementedException();
+            return _pessoaFisicaRepository.Put(pessoaFisica);
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return _pessoaFisicaRepository.Delete(id);
         }
     }
 }

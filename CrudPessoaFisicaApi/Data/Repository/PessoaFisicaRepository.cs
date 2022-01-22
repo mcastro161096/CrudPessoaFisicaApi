@@ -13,7 +13,9 @@ namespace CrudPessoaFisicaApi.Data.Repository
 
         public PessoaFisica Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.PessoaFisica
+                           .Where(x => x.Id == id)
+                           .FirstOrDefault();
         }
 
         public List<PessoaFisica> GetAll()
@@ -27,14 +29,14 @@ namespace CrudPessoaFisicaApi.Data.Repository
             {
                 try
                 {
-                   _context.PessoaFisica.Add(pessoaFisica);
+                    pessoaFisica.CreatedAt = DateTime.Now;
+                    _context.PessoaFisica.Add(pessoaFisica);
                     _context.SaveChanges();
                     transaction.Commit();
                     return true;
                 }
                 catch (Exception)
                 {
-
                     transaction.Rollback();
                     throw;
                 }
@@ -43,12 +45,49 @@ namespace CrudPessoaFisicaApi.Data.Repository
 
         public bool Put(PessoaFisica pessoaFisica)
         {
-            throw new NotImplementedException();
+            IDbContextTransaction transaction = _context.Database.BeginTransaction();
+            {
+                try
+                {
+                    var pessoaFisicaEntity = _context.PessoaFisica.FirstOrDefault(p => p.Id == pessoaFisica.Id);
+
+                    pessoaFisicaEntity.UpdatedAt = DateTime.Now;
+                    pessoaFisicaEntity.Cpf = pessoaFisica.Cpf;
+                    pessoaFisicaEntity.NomeCompleto = pessoaFisica.NomeCompleto;
+                    pessoaFisicaEntity.ValorRenda = pessoaFisica.ValorRenda;
+                    pessoaFisicaEntity.DataNascimento = pessoaFisica.DataNascimento;
+
+                    _context.PessoaFisica.Update(pessoaFisicaEntity);
+                    _context.SaveChanges();
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            IDbContextTransaction transaction = _context.Database.BeginTransaction();
+            {
+                try
+                {
+                    var pessoaFisica = _context.PessoaFisica.FirstOrDefault(p => p.Id == id);
+                    _context.PessoaFisica.Remove(pessoaFisica);
+                    _context.SaveChanges();
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
         }
     }
 }
