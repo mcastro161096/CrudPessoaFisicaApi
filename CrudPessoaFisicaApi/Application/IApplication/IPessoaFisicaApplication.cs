@@ -1,4 +1,5 @@
-﻿using CrudPessoaFisicaApi.Domain.Entities;
+﻿using CrudPessoaFisicaApi.Domain.DTO;
+using CrudPessoaFisicaApi.Domain.Entities;
 
 namespace CrudPessoaFisicaApi.Application.IApplication
 {
@@ -8,7 +9,7 @@ namespace CrudPessoaFisicaApi.Application.IApplication
 
         List<PessoaFisica> GetAll();
 
-        bool Post(PessoaFisica pessoaFisica);
+        bool Post(PessoaFisicaDTO pessoaFisica);
 
         bool Put(PessoaFisica pessoaFisica);
 

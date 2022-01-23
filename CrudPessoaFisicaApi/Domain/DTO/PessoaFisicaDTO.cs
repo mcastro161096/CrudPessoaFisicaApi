@@ -1,7 +1,9 @@
-﻿namespace CrudPessoaFisicaApi.Domain.Entities
+﻿namespace CrudPessoaFisicaApi.Domain.DTO
 {
-    public abstract class Pessoa : EntityBase
+    public class PessoaFisicaDTO
     {
+        public string Cpf { get; set; }
+
         public string NomeCompleto { get; set; }
 
         public DateTime DataNascimento { get; set; }

@@ -1,9 +1,9 @@
 ﻿using CrudPessoaFisicaApi.Application.IApplication;
+using CrudPessoaFisicaApi.Domain.DTO;
 using CrudPessoaFisicaApi.Domain.Entities;
 using CrudPessoaFisicaApi.Domain.Validator;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace CrudPessoaFisicaApi.Controllers
 {
@@ -13,6 +13,7 @@ namespace CrudPessoaFisicaApi.Controllers
     {
         private readonly IPessoaFisicaApplication _pessoaFisicaApplication;
         private readonly PessoaFisicaValidator _validationRules = new PessoaFisicaValidator();
+        private readonly PessoaFisicaDTOValidator _validationRulesDTO = new PessoaFisicaDTOValidator();
         private ValidationResult _result = new ValidationResult();
 
         public PessoaFisicaController(IPessoaFisicaApplication pessoaFisicaApplication)
@@ -39,6 +40,7 @@ namespace CrudPessoaFisicaApi.Controllers
             try
             {
                 return Ok(_pessoaFisicaApplication.GetAll());
+                //return BadRequest();
             }
             catch (Exception e)
             {
@@ -47,14 +49,15 @@ namespace CrudPessoaFisicaApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] PessoaFisica pessoaFisica)
+        public IActionResult Post([FromBody] PessoaFisicaDTO pessoaFisicaDto)
         {
             try
             {
-                _result = _validationRules.Validate(pessoaFisica);
+                //return BadRequest();
+                _result = _validationRulesDTO.Validate(pessoaFisicaDto);
                 if (_result.IsValid)
                 {
-                    return Ok(_pessoaFisicaApplication.Post(pessoaFisica));
+                    return Ok(_pessoaFisicaApplication.Post(pessoaFisicaDto));
                 }
                 return BadRequest(_result.Errors);
             }

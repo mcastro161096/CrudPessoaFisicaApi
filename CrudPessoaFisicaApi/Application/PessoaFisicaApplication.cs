@@ -1,5 +1,6 @@
 ﻿using CrudPessoaFisicaApi.Application.IApplication;
 using CrudPessoaFisicaApi.Data.IRepository;
+using CrudPessoaFisicaApi.Domain.DTO;
 using CrudPessoaFisicaApi.Domain.Entities;
 using static CrudPessoaFisicaApi.Domain.Common.Constantes;
 
@@ -28,10 +29,20 @@ namespace CrudPessoaFisicaApi.Application
             return listapessoas;
         }
 
-        public bool Post(PessoaFisica pessoaFisica)
+        public bool Post(PessoaFisicaDTO pessoaFisicaDTO)
         {
-            return _pessoaFisicaRepository.Post(pessoaFisica);
+            var novaPessoaFisica = new PessoaFisica()
+            {
+                NomeCompleto = pessoaFisicaDTO.NomeCompleto,
+                Cpf = pessoaFisicaDTO.Cpf,
+                ValorRenda = pessoaFisicaDTO.ValorRenda,
+                DataNascimento = pessoaFisicaDTO.DataNascimento,
+            };
+
+            return _pessoaFisicaRepository.Post(novaPessoaFisica);
         }
+
+
 
         public bool Put(PessoaFisica pessoaFisica)
         {

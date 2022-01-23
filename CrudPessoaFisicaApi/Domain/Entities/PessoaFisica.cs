@@ -1,4 +1,6 @@
-﻿namespace CrudPessoaFisicaApi.Domain.Entities
+﻿using CrudPessoaFisicaApi.Domain.DTO;
+
+namespace CrudPessoaFisicaApi.Domain.Entities
 {
     public class PessoaFisica : Pessoa
     {

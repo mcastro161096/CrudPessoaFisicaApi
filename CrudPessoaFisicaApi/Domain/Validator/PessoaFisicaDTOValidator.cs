@@ -1,13 +1,13 @@
-﻿using CrudPessoaFisicaApi.Domain.Entities;
+﻿using CrudPessoaFisicaApi.Domain.DTO;
 using FluentValidation;
 using static CrudPessoaFisicaApi.Domain.Common.Constantes;
 using static CrudPessoaFisicaApi.Domain.Common.DateTimeExtensions;
 
 namespace CrudPessoaFisicaApi.Domain.Validator
 {
-    public class PessoaFisicaValidator : AbstractValidator<PessoaFisica>
+    public class PessoaFisicaDTOValidator : AbstractValidator<PessoaFisicaDTO>
     {
-        public PessoaFisicaValidator()
+        public PessoaFisicaDTOValidator()
         {
             RuleFor(x => x.NomeCompleto).NotNull().WithMessage(ERRO_CAMPO_NULL)
                 .NotEmpty().WithMessage(ERRO_CAMPO_VAZIO)
