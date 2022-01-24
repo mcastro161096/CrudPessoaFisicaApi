@@ -2,7 +2,6 @@
 using CrudPessoaFisicaApi.Data.IRepository;
 using CrudPessoaFisicaApi.Domain.DTO;
 using CrudPessoaFisicaApi.Domain.Entities;
-using static CrudPessoaFisicaApi.Domain.Common.Constantes;
 
 namespace CrudPessoaFisicaApi.Application
 {
@@ -17,7 +16,7 @@ namespace CrudPessoaFisicaApi.Application
         { 
             var pessoaFisica = _pessoaFisicaRepository.Get(id);
             if (pessoaFisica == null)
-                throw new ApplicationException(ERRO_PESSOA_NAO_EXISTE);
+                pessoaFisica = new PessoaFisica();
             return pessoaFisica;
         }
 
@@ -25,7 +24,7 @@ namespace CrudPessoaFisicaApi.Application
         {
             var listapessoas = _pessoaFisicaRepository.GetAll();
             if (listapessoas == null)
-                throw new ApplicationException(ERRO_NAO_EXISTEM_DADOS);
+                listapessoas = new List<PessoaFisica>();
             return listapessoas;
         }
 
